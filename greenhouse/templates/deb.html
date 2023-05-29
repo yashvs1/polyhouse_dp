@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <style>
+        body{
+            background-color: black;
+        }
+        #chart_div{
+            background-color: black;
+        }
+            </style>
+   
+  
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app =initializeApp(firebaseConfig);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db=getDatabase();
+  const db1 = getFirestore(app);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let data = google.visualization.arrayToDataTable([
+          ['inside', 'outside'],
+          [0,0],
+        ]);
+
+        let options = {
+          title: 'Temperature ',
+          hAxis: {title: 'Temperature Inside', minValue: 0, maxValue: 100},
+          vAxis: {title: 'Temperature Outside', minValue: 0, maxValue: 100},
+          legend: 'none'
+        };
+
+        let chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        let maxDatas = 10;
+    
+    // interval for adding new data every 250ms
+    let index =0;
+    
+    setInterval(function () {
+
+      // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+      const dbref = ref(db,"temp/");
+      var intemp=0;
+    var outtemp=0;
+     
+      onValue(dbref,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z=childSnapshot.val().data;
+
+intemp=z;
+
+
+});
+
+
+})
+      const dbref1 = ref(db,"outtemp/");
+     
+      onValue(dbref1,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z1=childSnapshot.val().data;
+
+outtemp=z1;
+
+
+});
+
+
+})
+      let intem = intemp;
+      let outtem = outtemp;
+      let date=new Date();
+      let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+      if (data.getNumberOfRows() > maxDatas) {
+        data.removeRows(0, data.getNumberOfRows() - maxDatas);
+      }
+
+      data.addRow([intemp, outtem]);
+      chart.draw(data, options);
+
+      index++;
+    }, 1000);
+      }
+      </script>
+  </body>
+</html>

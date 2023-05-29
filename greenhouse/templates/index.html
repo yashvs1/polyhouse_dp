@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        html{
+            margin: 0;
+        }
+        #graphtemp{
+            display: flex;
+            margin-top: 100px;
+            /* justify-content: space-between; */
+           
+           
+        }
+        #vid{
+            margin-left: 150px;
+        }
+        #intempg{
+            width: 200px;
+        }
+        #chart_div{
+          margin-left: 250px;
+          height: 350px;
+          width: 550px;
+        }
+        body{
+          width: 2000px;
+          background-color: black;
+          margin: 0;
+          
+        }
+        
+        #second1{
+          display: flex;
+          margin-top: 50px;
+          /* justify-content: space-between; */
+        }
+        *, *:before, *:after {
+box-sizing: inherit;
+margin:0;
+padding:0;
+}
+.mid {
+display: flex;
+align-items: center;
+justify-content: left;
+padding-top:1em;
+}
+.mid1 {
+display: flex;
+align-items: center;
+justify-content: center;
+padding-top:1em;
+}
+.mid2 {
+display: flex;
+align-items: center;
+justify-content: right;
+padding-top:1em;
+}
+
+
+/* Switch starts here */
+.rocker {
+display: inline-block;
+position: relative;
+/*
+SIZE OF SWITCH
+==============
+All sizes are in em - therefore
+changing the font-size here
+will change the size of the switch.
+See .rocker-small below as example.
+*/
+font-size: 2em;
+font-weight: bold;
+text-align: center;
+text-transform: uppercase;
+color: #888;
+width: 7em;
+height: 4em;
+overflow: hidden;
+border-bottom: 0.5em solid #2d2b2b;
+}
+
+.rocker-small {
+font-size: 0.75em; /* Sizes the switch */
+margin: 1em;
+}
+
+.rocker::before {
+content: "";
+position: absolute;
+top: 0.5em;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #585555;
+
+border: 0.5em solid #2d2b2b ;
+border-bottom: 0;
+}
+
+.rocker input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.switch-left,
+.switch-right {
+cursor: pointer;
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 2.5em;
+width: 3em;
+transition: 0.2s;
+}
+
+.switch-left {
+height: 2.4em;
+width: 2.75em;
+left: 0.85em;
+bottom: 0.4em;
+background-color: #ddd;
+transform: rotate(15deg) skewX(15deg);
+}
+
+.switch-right {
+right: 0.5em;
+bottom: 0;
+background-color: #bd5757;
+color: #fff;
+}
+
+.switch-left::before,
+.switch-right::before {
+content: "";
+position: absolute;
+width: 0.4em;
+height: 2.45em;
+bottom: -0.45em;
+background-color: #ccc;
+transform: skewY(-65deg);
+}
+
+.switch-left::before {
+left: -0.4em;
+}
+
+.switch-right::before {
+right: -0.375em;
+background-color: transparent;
+transform: skewY(65deg);
+}
+
+input:checked + .switch-left {
+background-color:green;
+color: #fff;
+bottom: 0px;
+left: 0.5em;
+height: 2.5em;
+width: 3em;
+transform: rotate(0deg) skewX(0deg);
+}
+
+input:checked + .switch-left::before {
+background-color: transparent;
+width: 3.0833em;
+}
+
+input:checked + .switch-left + .switch-right {
+background-color: #ddd;
+color: #888;
+bottom: 0.4em;
+right: 0.8em;
+height: 2.4em;
+width: 2.75em;
+transform: rotate(-15deg) skewX(-15deg);
+}
+
+input:checked + .switch-left + .switch-right::before {
+background-color: #ccc;
+}
+
+/* Keyboard Users */
+input:focus + .switch-left {
+color: #333;
+}
+
+input:checked:focus + .switch-left {
+color: #fff;
+}
+
+input:focus + .switch-left + .switch-right {
+color: #fff;
+}
+
+input:checked:focus + .switch-left + .switch-right {
+color: #333;
+}
+h1{
+text-align: center;
+
+}
+#cp{
+background-color:#2d2b2b;
+
+height: 800px;
+width: 700px;
+border-radius: 50px;
+margin-left: 100px;
+margin-top: 40px;
+
+}
+.button {
+background-color: #4CAF50; 
+border: none;
+color: white;
+padding: 16px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+transition-duration: 0.4s;
+cursor: pointer;
+}
+
+.button1 {
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+
+}
+
+
+.button1:hover {
+background-color: #4CAF50;
+color: white;
+}
+#bt1{
+margin-left: 50px;
+border-radius: 20px;
+}
+#bt2{
+margin-left: 50px;
+border-radius: 20px;
+}
+#bt3{
+margin-left: 50px;
+border-radius: 20px;
+}
+#bt4{
+margin-left: 50px;
+border-radius: 20px;
+}
+#chart_div1{
+  margin-left: 50px;
+  height: 350px;
+  width: 550px;
+
+}
+#auto1{
+  margin-left: 50px;
+}
+#auto2{
+  margin-left: 50px;
+}
+#auto3{
+  margin-left: 50px;
+}
+#auto4{
+  margin-left: 50px;
+}
+.container {
+            position: relative;
+            top: 30%;
+            right: 30%;
+            transform: translate(0, -100%);
+            max-width: 40%;
+            height: 50%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+           
+           
+        }
+
+        .vertical-section {
+          background-color:#2d2b2b;
+            height: 90%; /* 100% height of parent container */
+            width: 100%; /* 20% width of parent container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .display {
+            /* background-color: white; */
+            border-radius: 5px;
+            /* border-color: black; */
+            margin-bottom: 10px;
+            font-size: 30px;
+            font-style: bold;
+            padding: 5px;
+            width : 250px;
+            margin-bottom: 40px;
+          }
+          .row1 {
+              display:flex;
+          }
+          .row2 {
+              display:flex;
+          }
+          .row3 {
+              display:flex;
+          }
+          .row4 {
+              display:flex;
+          }
+          .Fan {
+            width: 110px;
+            height: 50px;
+            background-color: #f1f9f1;
+            color: rgb(12, 12, 12);
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          .Cooling {
+            width: 110px;
+            height: 50px;
+            background-color: #f1f9f1;
+            color: rgb(12, 12, 12);
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          .Fogger {
+            width: 110px;
+            height: 50px;
+            background-color: #f1f9f1;
+            color: rgb(12, 12, 12);
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          
+          .Bulb {
+            width: 110px;
+            height: 50px;
+            background-color: #f1f9f1;
+            color: rgb(12, 12, 12);
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          
+          .number {
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: white;
+            border-radius: 50%;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          
+          .clear {
+            width: 110px;
+            height: 50px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          
+          .submit {
+            border-radius: 20%;
+            border-style:double;
+            width: 110px;
+            height: 50px;
+            background-color: #00ff00;
+            color: white;
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            font-size: 20px;
+          }
+          .number {
+              transition: transform 0.2s ease-in-out;
+              background-color: rgb(83, 82, 82);
+              color: white;
+              border-radius: 20%;
+              border-style:double;
+              margin-top: 5%;
+              margin-left: 5%;
+              padding: 10px;
+              font-size: 15px;
+              width : 40px;
+              cursor: pointer;
+            }
+          
+            button:hover {
+              transform: scale(1.1);
+              background-color: gray;
+            }
+
+
+
+
+    </style>
+    
+   
+  </head>
+  
+  <body>
+    <!-- CONTAINER FOR CHART -->
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">IIT Mandi Green House</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="graph">Graph <span class="sr-only">(current)</span></a>
+            </li>
+            
+      
+          </ul>
+        </div>
+      
+      </nav>
+      <h1 style="color: white; margin-top: 100px;">Smart Climate Controlled Agriculture</h1>
+      <div id="graphtemp">
+        
+      
+        <div id="intempg" ></div>
+        <div id="chart_div"></div>
+        <div id="vid">
+            <iframe width="600" height="350" src="https://www.youtube.com/embed/ChX-Y2XcjZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      
+       
+    
+       
+        
+      </div>
+     
+      <div id="second1">
+        <div id="inhumg" ></div>
+        <div id="chart_div1"></div>    
+        <div id="cp">
+          <h1 style="color: white;">Control Panel </h1>
+          
+          <div class="both">
+              <div class="mid">
+                  
+                  <label class="rocker">
+                    <input type="checkbox" checked>
+                    <span id="btn1" class="switch-left" style="height: 80px; width:100px; font-size: 20px;" >Fan On</span>
+                    <span id="btn2" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Fan Off</span>
+                  </label>
+                  <div class="mid1">
+                      <button id="bt1" class="button button1" style="height: 40px; width:50px; font-size: 20px; font-weight: bold;">Get Status</button>
+                    </div>
+                  <!-- <div class="mid2">
+                      <form name="myForm" action="" method="GET" style="color: white; " id="f1">
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter time to stop:<br>
+                          <input type="text" name="inputbox" value="" style="width: 100px; margin-left: 70px; height: 40px;">
+                          <input   type="button" name="button" value="submit" onClick="testResult(this.form)" style="width: 50px; height:40px">
+                        </form>
+                    </div> -->
+                    <label class="rocker" id="auto1">
+                      <input type="checkbox" checked>
+                      <span id="btn10" class="switch-left" style="height: 80px; width:100px; font-size: 20px;" >Auto Matic</span>
+                      <span id="btn11" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Manual</span>
+                    </label>
+                
+                </div>
+      
+                
+              
+          </div>
+          
+            <div class="mid">
+            
+              <label class="rocker">
+                  <input type="checkbox" checked>
+                  <span id="btn3" class="switch-left" style="height: 80px; width:100px; font-size: 20px;">Foger On</span>
+                  <span id="btn4" class="switch-right"style="height: 80px; width:100px; font-size: 20px;">Foger Off</span>
+                </label>
+                <div class="mid1">
+                  <button id="bt2" class="button button1" style="height: 40px; width:50px; font-size: 20px; font-weight: bold;">Get Status</button>
+                </div>
+                <!-- <div class="mid2">
+                  <form name="myForm" action="" method="GET" style="color: white;">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter time to stop: <br>
+                      <input type="text" name="inputbox" value="" style="width: 100px; margin-left: 70px; height: 40px;">
+                      <input   type="button" name="button" value="submit" onClick="testResult1(this.form)" style="width: 50px; height:40px">
+                    </form>
+                </div> -->
+                <label class="rocker" id="auto2">
+                  <input type="checkbox" checked>
+                  <span id="btn12" class="switch-left" style="height: 80px; width:100px; font-size: 20px;" >Auto Matic</span>
+                  <span id="btn13" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Manual</span>
+                </label>
+            
+            </div>
+            <div class="mid">
+            
+              <label class="rocker">
+                  <input type="checkbox" checked>
+                  <span id="btn5" class="switch-left" style="height: 80px; width:100px; font-size: 20px;">Cooling On</span>
+                  <span id="btn6" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Cooling Off</span>
+                </label>
+                <div class="mid1">
+                  <button id="bt3" class="button button1" style="height: 40px; width:50px; font-size: 20px; font-weight: bold;">Get Status</button>
+                </div>
+                <!-- <div class="mid2">
+                  <form name="myForm" action="" method="GET" style="color: white;">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter time to stop:<br>
+                      <input type="text" name="inputbox" value="" style="width: 100px; margin-left: 70px; height: 40px;">
+                      <input   type="button" name="button" value="submit" onClick="testResult2(this.form)" style="width: 50px; height:40px">
+                    </form>
+                </div> -->
+                <label class="rocker" id="auto3">
+                  <input type="checkbox" checked>
+                  <span id="btn14" class="switch-left" style="height: 80px; width:100px; font-size: 20px;" >Auto Matic</span>
+                  <span id="btn15" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Manual</span>
+                </label>
+            
+            </div>
+            <div class="mid">
+            
+              <label class="rocker">
+                  <input type="checkbox" checked>
+                  <span id="btn7" class="switch-left" style="height: 80px; width:100px; font-size: 20px;">Bulb On</span>
+                  <span id="btn8" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Bulb Off</span>
+                </label>
+                <div class="mid1">
+                  <button id="bt4" class="button button1" style="height: 40px; width:50px; font-size: 20px; font-weight: bold;">Get Status</button>
+                </div>
+                <!-- <div class="mid2">
+                  <form name="myForm" action="" method="GET" style="color: white;">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter time to stop: <br>
+                      <input type="text" name="inputbox" value="" style="width: 100px; margin-left: 70px; height: 40px;">
+                      <input   type="button" name="button" value="submit" onClick="testResult3(this.form)" style="width: 50px; height:40px;">
+                    </form>
+                </div> -->
+                <label class="rocker" id="auto4">
+                  <input type="checkbox" checked>
+                  <span id="btn16" class="switch-left" style="height: 80px; width:100px; font-size: 20px;" >Auto Matic</span>
+                  <span id="btn17" class="switch-right" style="height: 80px; width:100px; font-size: 20px;">Manual</span>
+                </label>
+            
+            </div>
+      </div>
+        </div>
+        
+      </div>
+
+      <div class="container">
+        <div class="vertical-section">
+            <div class="display">
+                <b>
+                <input type="text" id="display" readonly>
+                </b>
+              </div>
+            <div class="row">    
+                <button class="Fan" id = "butnf">Fan</button> 
+                <button class="Cooling" id = "butnc">Cooling</button>   
+            </div>
+            <div class="row">    
+                <button class="Fan" id = "butnfo">fogger</button> 
+                <button class="Cooling" id = "butnbu">Bulb</button>   
+            </div>
+            <div class="row">    
+              <button class="clear" id = "butn">Clear</button>   
+              <button class="submit" id = "butn">Submit</button>
+            </div>
+        </div>
+        <div class="vertical-section">
+            <div class="row1">
+                <button class="number" value="1" id = "butn">1</button>
+                <button class="number" value="2" id = "butn">2</button>
+                <button class="number" value="3" id = "butn">3</button>
+            </div>
+            <div class="row2">
+                <button class="number" value="4" id = "butn">4</button>
+                <button class="number" value="5" id = "butn">5</button>
+                <button class="number" value="6" id = "butn">6</button>
+            </div>
+            <div class="row3">
+                <button class="number" value="7" id = "butn">7</button>
+                <button class="number" value="8" id = "butn">8</button>
+                <button class="number" value="9" id = "butn">9</button>
+            </div>
+            <div class="row4">     
+                <button class="number" value="0" id = "butn">0</button>
+                <button class="number" value="." id = "butn">.</button>
+            </div>
+            
+              
+          </div>
+        </div>
+    </div>
+    <form id="myForm" action="/submit" method="post">
+      <input type="hidden" id="phone" name="phone">
+    </form>
+       
+      <script
+          type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+        <script type="module" >
+          // load current chart package
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app =initializeApp(firebaseConfig);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+
+
+  const db=getDatabase();
+  const db1 = getFirestore(app);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+          let c2=0;
+          function drawChart() {
+            
+            console.log(c2);
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'Inside', 'Outside'],
+              ['0', 0, 0],
+            ]);
+         
+             
+	
+	  
+            
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Temperature(in degree celcius) Vs Time(in seconds)',
+              vAxis: {
+          title: "Temperature in degree celcius"
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            let index =0;
+            var intemp=0;
+            var outtemp=0;
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              const dbref = ref(db,"temp/");
+             
+              onValue(dbref,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z=childSnapshot.val().data;
+        
+ 
+        intemp=z;
+       
+        
+     });
+ 
+    
+   })
+              const dbref1 = ref(db,"outtemp/");
+             
+              onValue(dbref1,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z1=childSnapshot.val().data;
+ 
+        outtemp=z1;
+       
+        
+     });
+ 
+    
+   })
+              let intem = intemp;
+              let outtem = outtemp;
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, intem,outtem]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+         </script>
+       <script
+           type="text/javascript"
+           src="https://www.gstatic.com/charts/loader.js"
+         ></script>
+       <script type="module">
+          // load current chart package
+
+         
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig1 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+  const app1 =initializeApp(firebaseConfig1);
+
+
+  const db2=getDatabase();
+  const db3 = getFirestore(app1);
+          import {getDatabase,ref,get,set,child,update,remove,onValue}
+         from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'Inside', 'Outside'],
+              ['0', 0, 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+            
+
+              title: 'Humidity Vs Time(in seconds)',
+              vAxis: {
+          title: "Humidity"
+          
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div1')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            let index = 0;
+            let inhum=0;
+            let outhum=0;
+
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              
+              const db2ref2 = ref(db2,"humidity/");
+             
+              onValue(db2ref2,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z2=childSnapshot.val().data;
+        inhum=z2;
+       
+        
+     });
+    })
+              const db2ref3 = ref(db2,"humidityout/");
+             
+              onValue(db2ref3,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z3=childSnapshot.val().data;
+ 
+        outhum=z3;
+       
+        
+     });
+    })
+              
+              let inh =  inhum;
+              let outh = outhum;
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime,inh,outh]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+        </script>
+        <script type="module">
+            import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig2 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+  const app2 =initializeApp(firebaseConfig2);
+
+
+  const db4=getDatabase();
+  const db5 = getFirestore(app2);
+          import {getDatabase,ref,get,set,child,update,remove,onValue}
+         from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+        
+            google.charts.load('current', {'packages':['gauge']});
+            google.charts.setOnLoadCallback(drawChart);
+      
+            function drawChart() {
+      
+              var data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
+                ['inside', 0],
+                ['Outside', 0],
+            
+              ]);
+      
+              var options = {
+                width: 400, height: 400,
+               
+                redFrom: 40, redTo: 100,
+                yellowFrom:30, yellowTo: 40,
+                minorTicks: 5
+              };
+      
+              var chart2 = new google.visualization.Gauge(document.getElementById('intempg'));
+      
+              chart2.draw(data, options);
+      
+              setInterval(function() {
+                const dbref4 = ref(db4,"temp/");
+                const dbref5 = ref(db4,"outtemp/");
+              var intemp1=0;
+              var outtemp1=0;
+             onValue(dbref4,(snapshot)=>{
+    
+    snapshot.forEach(childSnapshot=>{
+       
+      //  studs.push(childSnapshot.val().Rollno);
+      //  console.log("deb "+childSnapshot.val().RollNo);
+       var z5=childSnapshot.val().data;
+
+       intemp1=z5;
+      
+       
+    });
+
+   
+  })
+             onValue(dbref5,(snapshot)=>{
+    
+    snapshot.forEach(childSnapshot=>{
+       
+      //  studs.push(childSnapshot.val().Rollno);
+      //  console.log("deb "+childSnapshot.val().RollNo);
+       var z6=childSnapshot.val().data;
+
+       outtemp1=z6;
+      
+       
+    });
+
+   
+  })
+                data.setValue(0, 1, intemp1);
+                data.setValue(1, 1, outtemp1);
+                chart2.draw(data, options);
+              }, 1000);
+              
+            }
+          </script>
+ <script type="module">
+  import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+// Initialize Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+const firebaseConfig3 = {
+apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+const app3 =initializeApp(firebaseConfig3);
+
+
+const db6=getDatabase();
+const db7 = getFirestore(app3);
+import {getDatabase,ref,get,set,child,update,remove,onValue}
+from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  google.charts.load('current', {'packages':['gauge']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      ['Inhum', 0],
+      ['Outhum', 0],
+  
+    ]);
+
+    var options = {
+      width: 400, height: 320,
+      redFrom: 90, redTo: 100,
+      yellowFrom:75, yellowTo: 90,
+      minorTicks: 5
+    };
+
+    var chart3 = new google.visualization.Gauge(document.getElementById('inhumg'));
+
+    chart3.draw(data, options);
+
+    setInterval(function() {
+      const dbref4 = ref(db6,"humidity/");
+      const dbref5 = ref(db6,"humidityout/");
+    var inhum1=0;
+    var outhum1=0;
+   onValue(dbref4,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z5=childSnapshot.val().data;
+
+inhum1=z5;
+
+
+});
+
+
+})
+   onValue(dbref5,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z6=childSnapshot.val().data;
+
+outhum1=z6;
+
+
+});
+
+
+})
+      data.setValue(0, 1, inhum1);
+      data.setValue(1, 1, outhum1);
+      chart3.draw(data, options);
+    }, 1000);
+    
+  }
+
+ 
+ 
+    
+</script>   
+
+<script type="module">
+import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+// Initialize Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+const firebaseConfig4 = {
+apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+const app4 =initializeApp(firebaseConfig4);
+
+
+const db8=getDatabase();
+const db9 = getFirestore(app4);
+const dbref8 = ref(db8,"check/");
+import {getDatabase,ref,get,set,child,update,remove,onValue}
+from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+let autofan=0;
+let autocooling=0;
+let autobulb=0;
+let autofogger=0;
+document.querySelector('#btn10').addEventListener('click', function(){  
+  
+    set(ref(db8,"autofan/"),{
+ input:1,
+ 
+ })
+ autofan=1;
+})
+document.querySelector('#btn11').addEventListener('click', function(){  
+  
+    set(ref(db8,"autofan/"),{
+ input:0,
+ 
+ })
+ autofan=0;
+})
+
+document.querySelector('#btn12').addEventListener('click', function(){  
+  
+    set(ref(db8,"autofogger/"),{
+ input:1,
+ })
+ autofogger=1;
+})
+document.querySelector('#btn13').addEventListener('click', function(){  
+
+    set(ref(db8,"autofogger/"),{
+ input:0,
+ })
+ autofogger=0;
+})
+document.querySelector('#btn14').addEventListener('click', function(){  
+   
+    set(ref(db8,"autocooling/"),{
+ input:1,
+ })
+ autocooling=1;
+})
+document.querySelector('#btn15').addEventListener('click', function(){  
+   
+    set(ref(db8,"autocooling/"),{
+ input:0,
+ })
+ autocooling=0;
+})
+document.querySelector('#btn16').addEventListener('click', function(){  
+
+    set(ref(db8,"autobulb/"),{
+ input:1,
+ })
+ autobulb=1;
+})
+
+document.querySelector('#btn17').addEventListener('click', function(){  
+    
+    set(ref(db8,"autobulb/"),{
+ input:0,
+ })
+ autobulb=0;
+})
+document.querySelector('#btn3').addEventListener('click', function(){  
+  
+  set(ref(db8,"fogger/"),{
+input:1,
+})
+
+})
+document.querySelector('#btn4').addEventListener('click', function(){  
+  
+  set(ref(db8,"fogger/"),{
+input:0,
+})
+
+})
+document.querySelector('#btn5').addEventListener('click', function(){  
+  
+  set(ref(db8,"cooling/"),{
+input:1,
+})
+
+})
+document.querySelector('#btn6').addEventListener('click', function(){  
+  
+  set(ref(db8,"cooling/"),{
+input:0,
+})
+
+})
+document.querySelector('#btn1').addEventListener('click', function(){  
+  
+  set(ref(db8,"fan/"),{
+input:1,
+})
+
+})
+document.querySelector('#btn7').addEventListener('click', function(){  
+  
+  set(ref(db8,"bulb/"),{
+input:1,
+})
+
+})
+document.querySelector('#btn8').addEventListener('click', function(){  
+  
+  set(ref(db8,"bulb/"),{
+input:0,
+})
+
+})
+document.querySelector('#btn2').addEventListener('click', function(){  
+  
+  set(ref(db8,"fan/"),{
+input:0,
+})
+
+})
+
+
+document.querySelector('#bt1').addEventListener('click', function(){  
+  
+  onValue(dbref8,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z=childSnapshot.val().ch;
+       if(z==1){
+        alert("fan is on");
+       }
+       else{
+        alert("fan is off");
+       }
+ 
+        
+     });
+    
+   })
+
+})
+document.querySelector('#bt2').addEventListener('click', function(){  
+  
+  onValue(dbref8,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+       console.log("hello");
+        var z=childSnapshot.val().ch1;
+       if(z==1){
+        alert("foger is on");
+       }
+       else{
+        alert("foger is off");
+       }
+ 
+        
+     });
+    
+   })
+
+})
+document.querySelector('#bt4').addEventListener('click', function(){  
+  
+  onValue(dbref8,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z=childSnapshot.val().ch2;
+       if(z==1){
+        alert("bulb is on");
+       }
+       else{
+        alert("bulb is off");
+       }
+ 
+        
+     });
+    
+   })
+
+})
+
+   const display = document.getElementById('display');
+  const clearButton = document.querySelector('.clear');
+  const submitButton = document.querySelector('.submit');
+  const numberButtons = document.querySelectorAll('.number');
+
+  let phoneNumber = '';
+  let fan=0;
+  let fogger=0;
+  let bulb=0;
+  let  cooling=0;
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    // Display the submitted phone number using an alert
+    
+    if(fan==1){
+      set(ref(db8,"fantemp/"),{
+ input:parseFloat(phoneNumber),
+ })
+    }
+    else if(fogger==1){
+      set(ref(db8,"foggertemp/"),{
+ input:parseFloat(phoneNumber),
+ })
+    }
+    else if(bulb==1){
+      set(ref(db8,"bulbtemp/"),{
+ input:parseFloat(phoneNumber),
+ })
+    }
+    else if(cooling==1){
+      set(ref(db8,"coolingtemp/"),{
+ input:parseFloat(phoneNumber),
+ })
+    }
+
+
+  });
+  document.querySelector('#butnf').addEventListener('click', function(){  
+    fan=1;
+    bulb=0;
+    fogger=0;
+    cooling=0;
+     
+ });
+  document.querySelector('#butnc').addEventListener('click', function(){  
+    cooling=1;
+    fan=0;
+    bulb=0;
+    fogger=0;
+     
+ });
+  document.querySelector('#butnbu').addEventListener('click', function(){  
+    
+    bulb=1;
+    fan=0;
+    cooling=0;
+    fogger=0;
+
+     
+ });
+  document.querySelector('#butnfo').addEventListener('click', function(){  
+    fogger=1;
+    fan=0;
+    bulb=0;
+    cooling=0;
+     
+ });
+  numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      phoneNumber += button.value;
+      display.value = phoneNumber;
+    });
+  });
+
+  clearButton.addEventListener('click', () => {
+    phoneNumber = '';
+    display.value = phoneNumber;
+  });
+
+</script>
+   
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

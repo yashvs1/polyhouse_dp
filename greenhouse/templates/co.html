@@ -1,0 +1,474 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: black;
+            }
+            h1{
+                margin-left: 40%;
+                color: white;
+            }
+            .cont{
+                line-gap-override: 50px;
+                background-color: black;
+                display:grid;
+            }
+            .cont1{
+                display: flex;
+                background-color: black;
+                gap: 50px;
+                margin-bottom: 30px;
+            }
+            .cont2{
+                display: flex;
+                background-color: black;
+                gap: 50px;
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+ <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">IIT Mandi Green House</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/edit">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/edit">Graph <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="co">Correlation <span class="sr-only">(current)</span></a>
+            </li>
+            
+      
+          </ul>
+        </div>
+      
+      </nav>
+    <h1>Correlation Graphs </h1>
+    <hr style="color: white;">
+    <hr style="color: white;">
+    <br>
+    <br>
+    <div class="cont">
+    <div class="cont1">
+    <div id="chart_div1" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div2" style="width: 900px; height: 500px;"></div>
+    </div>
+    <div class="cont2">
+    <div id="chart_div3" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div4" style="width: 900px; height: 500px;"></div>
+    </div>
+</div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app1 =initializeApp(firebaseConfig);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db1=getDatabase();
+  const db2 = getFirestore(app1);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let data = google.visualization.arrayToDataTable([
+          ['inside', 'outside'],
+          [0,0],
+        ]);
+
+        let options = {
+          title: 'Temperature ',
+          hAxis: {title: 'Temperature Inside', minValue: 0, maxValue: 100},
+          vAxis: {title: 'Temperature Outside', minValue: 0, maxValue: 100},
+          legend: 'none'
+        };
+
+        let chart = new google.visualization.ScatterChart(document.getElementById('chart_div1'));
+
+        chart.draw(data, options);
+        let maxDatas = 100;
+    
+    // interval for adding new data every 250ms
+    let index =0;
+    
+    setInterval(function () {
+
+      // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+      const dbref = ref(db1,"temp/");
+      var intemp=0;
+    var outtemp=0;
+     
+      onValue(dbref,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z=childSnapshot.val().data;
+
+intemp=z;
+
+
+});
+
+
+})
+      const dbref1 = ref(db1,"outtemp/");
+     
+      onValue(dbref1,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z1=childSnapshot.val().data;
+
+outtemp=z1;
+
+
+});
+
+
+})
+      let intem = intemp;
+      let outtem = outtemp;
+      let date=new Date();
+      let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+      if (data.getNumberOfRows() > maxDatas) {
+        data.removeRows(0, data.getNumberOfRows() - maxDatas);
+      }
+
+      data.addRow([intem, outtem]);
+      chart.draw(data, options);
+
+      index++;
+    }, 2000);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig1 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app2 =initializeApp(firebaseConfig1);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db3=getDatabase();
+  const db4 = getFirestore(app2);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let data = google.visualization.arrayToDataTable([
+          ['inside', 'outside'],
+          [0,0],
+        ]);
+
+        let options = {
+          title: 'Humidity ',
+          hAxis: {title: 'Humidity Inside', minValue: 0, maxValue: 200},
+          vAxis: {title: 'Humidity Outside', minValue: 0, maxValue: 200},
+          legend: 'none'
+        };
+
+        let chart = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+
+        chart.draw(data, options);
+        let maxDatas = 100;
+    
+    // interval for adding new data every 250ms
+    let index =0;
+    
+    setInterval(function () {
+
+      // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+      const dbref2 = ref(db3,"humidity/");
+      var inhum=0;
+    var outhum=0;
+     
+      onValue(dbref2,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z=childSnapshot.val().data;
+
+inhum=z;
+
+
+});
+
+
+})
+      const dbref3 = ref(db3,"humidityout/");
+     
+      onValue(dbref3,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z1=childSnapshot.val().data;
+
+outhum=z1;
+
+
+});
+
+
+})
+      let inh = inhum;
+      let outh = outhum;
+      let date=new Date();
+      let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+      if (data.getNumberOfRows() > maxDatas) {
+        data.removeRows(0, data.getNumberOfRows() - maxDatas);
+      }
+
+      data.addRow([inh, outh]);
+      chart.draw(data, options);
+
+      index++;
+    }, 2000);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig2 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app3 =initializeApp(firebaseConfig2);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db5=getDatabase();
+  const db6 = getFirestore(app3);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let data = google.visualization.arrayToDataTable([
+          ['inside', 'outside'],
+          [0,0],
+        ]);
+
+        let options = {
+          title: 'Temperature vs Humidity',
+          hAxis: {title: 'Temperature Inside', minValue: 0, maxValue: 100},
+          vAxis: {title: 'Humidity Inside', minValue: 0, maxValue: 100},
+          legend: 'none'
+        };
+
+        let chart = new google.visualization.ScatterChart(document.getElementById('chart_div3'));
+
+        chart.draw(data, options);
+        let maxDatas = 100;
+    
+    // interval for adding new data every 250ms
+    let index =0;
+    
+    setInterval(function () {
+
+      // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+      const dbref3 = ref(db5,"temp/");
+      var intemp=0;
+    var  inhu=0;
+     
+      onValue(dbref3,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z=childSnapshot.val().data;
+
+intemp=z;
+
+
+});
+
+
+})
+      const dbref4 = ref(db5,"humidity/");
+     
+      onValue(dbref4,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z1=childSnapshot.val().data;
+
+inhu=z1;
+
+
+});
+
+
+})
+      let intemperature = intemp;
+      let inhumidty = inhu;
+      let date=new Date();
+      let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+      if (data.getNumberOfRows() > maxDatas) {
+        data.removeRows(0, data.getNumberOfRows() - maxDatas);
+      }
+
+      data.addRow([intemperature, inhumidty]);
+      chart.draw(data, options);
+
+      index++;
+    }, 2000);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module">
+         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig3 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app4 =initializeApp(firebaseConfig3);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db7=getDatabase();
+  const db8 = getFirestore(app4);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        let data = google.visualization.arrayToDataTable([
+          ['inside', 'outside'],
+          [0,0],
+        ]);
+
+        let options = {
+          title: 'Temperature vs Humidity ',
+          hAxis: {title: 'Temperature Outside', minValue: 0, maxValue: 100},
+          vAxis: {title: 'Humidity Outside', minValue: 0, maxValue: 100},
+          legend: 'none'
+        };
+
+        let chart = new google.visualization.ScatterChart(document.getElementById('chart_div4'));
+
+        chart.draw(data, options);
+        let maxDatas = 100;
+    
+    // interval for adding new data every 250ms
+    let index =0;
+    
+    setInterval(function () {
+
+      // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+      const dbref7 = ref(db7,"outtemp/");
+      var outtemp=0;
+    var outhumidity=0;
+     
+      onValue(dbref7,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z=childSnapshot.val().data;
+
+outtemp=z;
+
+
+});
+
+
+})
+      const dbref8 = ref(db7,"humidityout/");
+     
+      onValue(dbref8,(snapshot)=>{
+
+snapshot.forEach(childSnapshot=>{
+
+//  studs.push(childSnapshot.val().Rollno);
+//  console.log("deb "+childSnapshot.val().RollNo);
+var z1=childSnapshot.val().data;
+
+outhumidity=z1;
+
+
+});
+
+
+})
+      let outtemperature3 = outtemp;
+      let outhum3= outhumidity;
+      let date=new Date();
+      let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+      if (data.getNumberOfRows() > maxDatas) {
+        data.removeRows(0, data.getNumberOfRows() - maxDatas);
+      }
+
+      data.addRow([outtemperature3, outhum3]);
+      chart.draw(data, options);
+
+      index++;
+    }, 2000);
+      }
+    </script>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  
+  
+ 
+    
+  </body>
+</html>

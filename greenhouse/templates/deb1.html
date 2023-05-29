@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app =initializeApp(firebaseConfig);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db=getDatabase();
+  const db1 = getFirestore(app);
+  const dbref = ref(db,"deb/input");
+  onValue(dbref,(snapshot)=>{
+     
+     const data=snapshot.val();
+     if(data==0){
+        alert("if data is 0");
+     }
+     else{
+        alert("if data is 1");
+     }
+ 
+    
+   })
+    </script>
+</body>
+</html>

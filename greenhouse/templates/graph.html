@@ -1,0 +1,622 @@
+<!-- <head>
+    <p>Graphs</p>
+</head> -->
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">IIT Mandi Green House</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/edit">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="graph">Graph <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/edit">Correlation <span class="sr-only">(current)</span></a>
+        </li>
+        
+  
+      </ul>
+    </div>
+  
+  </nav>
+    <h1>Graphs</h1>
+    <br>
+    <br>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+     <style>
+   
+    h1{
+      color: white;
+      margin-left: 45%;
+      font-size: 50px;
+    }  
+  
+   .container1{
+    display:flex;
+    gap: 50px;
+   
+   }
+   .container2{
+    display:flex;
+    gap: 50px;
+   }
+   .container3{
+    display:flex;
+    gap: 50px;
+   }
+   .container4{
+    display:flex;
+    gap: 50px;
+   }
+   .container5{
+    display:flex;
+    gap: 50px;
+   }
+   .chart-container1{
+    width:4500px;
+    height:250px;
+   }
+   .chart-container2{
+    width:4900px;
+    height:250px;
+   }
+   .chart-container3{
+    width:5800px;
+    height:250px;
+   }
+   .chart-container4{
+    width:3850px;
+    height:250px;
+   }
+   .chart-container5{
+    width:5600px;
+    height:250px;
+   }
+   
+   p{
+    word-wrap: break-word;
+    font-family: 'Times New Roman', Times, serif;
+    color:white;
+    font-size: 20px;
+   }
+   body{
+    background-color: rgb(23, 23, 24);
+   }
+   
+    </style>
+
+    <div class="container1">
+    <div id="chart_div1" class="chart-container1"></div>
+    <div class="cnt1">
+    <p>The temperature inside a polyhouse typically follows a diurnal pattern, with warmer temperatures during the day and cooler temperatures at night. The transparent or translucent covering material allows sunlight to enter, creating a greenhouse effect that warms the air and surfaces inside. Various factors such as insulation, ventilation, and heating systems are employed to maintain a favorable temperature range for optimal plant growth and development.</p>
+  </div>    
+  </div>
+    <br>
+    <br>
+    <br>
+    <div class="container2">
+    <div id="chart_div2" class="chart-container2"></div>
+    <p>The temperature outside a polyhouse can vary based on location, weather conditions, and the time of year. It is influenced by factors such as sunlight, wind, humidity, and precipitation. During the day, the temperature can fluctuate, with warmer temperatures in the afternoon and cooler temperatures at night. In different seasons, the temperature outside the polyhouse can range from cold in winter to hot in summer. Weather conditions like rain, snow, or wind can also impact the outside temperature.</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container3">
+    <div id="chart_div3" class="chart-container3"></div>
+    <p> The humidity outside a polyhouse can vary depending on the location, weather conditions, and time of year. Humidity refers to the amount of moisture present in the air. In areas near bodies of water or during rainy periods, the outside humidity tends to be higher. In arid regions or during dry seasons, the outside humidity may be lower. Weather conditions such as rain or fog can increase humidity levels, while windy conditions or heat can lead to drier air with lower humidity. The specific humidity levels outside a polyhouse will depend on the local climate and prevailing weather patterns.</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container4">
+    <div id="chart_div4" class="chart-container4"></div>
+    <p>The humidity inside a polyhouse is typically managed to create an optimal environment for plant growth. The humidity levels are regulated based on the specific needs of the cultivated plants. Generally, the aim is to maintain a balance between moisture levels to prevent excessive condensation or drying out. This is achieved through ventilation, misting systems, and careful irrigation practices</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- <div class="container5">
+    <div id="chart_div5" class="chart-container5"></div>
+    <p>The CO2 (carbon dioxide) levels inside a polyhouse are often monitored and managed to optimize plant growth and productivity. Carbon dioxide is essential for photosynthesis, the process by which plants convert sunlight into energy. To enhance CO2 levels inside the polyhouse, various techniques are employed, such as introducing CO2 from external sources or utilizing CO2 generators. By maintaining optimal CO2 levels, typically between 800 to 1,200 parts per million (ppm), plant growth can be stimulated, leading to increased yields and improved overall plant health</p>
+  </div> -->
+    </div>
+   
+  
+  <script
+            type="text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"
+          ></script>
+          <script type="module" >
+             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app =initializeApp(firebaseConfig);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db=getDatabase();
+  const db1 = getFirestore(app);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'inside'],
+              ['0', 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Temperature(in degree celcius) Vs Time(in seconds)',
+              vAxis: {
+          title: "Temperature inside the polyhouse"
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div1')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            let index =0;
+            var intemp=0;
+            var outtemp=0;
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              const dbref = ref(db,"temp/");
+             
+              onValue(dbref,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z=childSnapshot.val().data;
+ 
+        intemp=z;
+       
+        
+     });
+ 
+    
+   })
+              const dbref1 = ref(db,"outtemp/");
+             
+              onValue(dbref1,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z1=childSnapshot.val().data;
+ 
+        outtemp=z1;
+       
+        
+     });
+ 
+    
+   })
+              let intem = intemp;
+              let outtem = outtemp;
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, intem]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+           </script>
+           <script
+           type="text/javascript"
+           src="https://www.gstatic.com/charts/loader.js"
+         ></script>
+         <script type="module" >
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig1 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app1 =initializeApp(firebaseConfig1);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db2=getDatabase();
+  const db3 = getFirestore(app1);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'outside'],
+              ['0', 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Temperature(in degree celcius) Vs Time(in seconds)',
+              vAxis: {
+          title: "Temperature Outside the polyhouse "
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div2')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            let index =0;
+            var intemp=0;
+            var outtemp=0;
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              
+   const dbref2 = ref(db2,"outtemp/");
+             
+             onValue(dbref2,(snapshot)=>{
+    
+    snapshot.forEach(childSnapshot=>{
+       
+      //  studs.push(childSnapshot.val().Rollno);
+      //  console.log("deb "+childSnapshot.val().RollNo);
+       var z1=childSnapshot.val().data;
+
+       outtemp=z1;
+      
+       
+    });
+ 
+    
+   })
+             
+              let outtem = outtemp;
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, outtem]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+          </script>
+          <script
+          type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+        <script type="module" >
+           import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig2 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app2 =initializeApp(firebaseConfig2);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db4=getDatabase();
+  const db5 = getFirestore(app2);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'Humidity inside'],
+              ['0', 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Humidity Vs Time(in seconds)',
+              vAxis: {
+          title: "Humidity inside the polyhouse"
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div3')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            let index =0;
+            
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              let inhum=0;
+              const dbref3 = ref(db4,"humidity/");
+             
+              onValue(dbref3,(snapshot)=>{
+     
+     snapshot.forEach(childSnapshot=>{
+        
+       //  studs.push(childSnapshot.val().Rollno);
+       //  console.log("deb "+childSnapshot.val().RollNo);
+        var z=childSnapshot.val().data;
+ 
+        inhum=z;
+       
+        
+     });
+ 
+    
+   })
+              
+            
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, inhum]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+         </script>
+          <script
+          type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+        <script type="module" >
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig3 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app3 =initializeApp(firebaseConfig3);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db6=getDatabase();
+  const db7 = getFirestore(app3);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'Humidity outside'],
+              ['0', 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Humidity Vs Time(in seconds)',
+              vAxis: {
+          title: "Humidity outside the polyhouse"
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div4')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              let outhum=0;
+   const dbref4 = ref(db6,"humidityout/");
+             
+             onValue(dbref4,(snapshot)=>{
+    
+    snapshot.forEach(childSnapshot=>{
+       
+      //  studs.push(childSnapshot.val().Rollno);
+      //  console.log("deb "+childSnapshot.val().RollNo);
+       var z1=childSnapshot.val().data;
+
+       outhum=z1;
+      
+       
+    });
+ 
+    
+   })
+             
+
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, outhum]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+         </script>
+          <script
+          type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"
+        ></script>
+        <script type="module" >
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+     const firebaseConfig4 = {
+  apiKey: "AIzaSyDkjQBa9aXLxF2fqnj753L76f0KNlhGwAE",
+    authDomain: "green-9ea63.firebaseapp.com",
+    databaseURL: "https://green-9ea63-default-rtdb.firebaseio.com",
+    projectId: "green-9ea63",
+    storageBucket: "green-9ea63.appspot.com",
+    messagingSenderId: "310758965980",
+    appId: "1:310758965980:web:5acfe4ef34ba28baddaa19",
+    measurementId: "G-JQNLSF4MGL"
+};
+ import { getFirestore, doc, getDoc,setDoc,addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+  // Initialize Firebase
+  const app4 =initializeApp(firebaseConfig4);
+  import {getDatabase,ref,get,set,child,update,remove,onValue}
+  from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"
+
+  const db8=getDatabase();
+  const db9 = getFirestore(app4);
+          google.charts.load('current', {
+            packages: ['corechart', 'line'],
+          });
+    
+          // set callback function when api loaded
+          google.charts.setOnLoadCallback(drawChart);
+    
+          function drawChart() {
+            // create data object with default value
+            let data = google.visualization.arrayToDataTable([
+              ['Time', 'Co2 inside'],
+              ['0', 0],
+            ]);
+    
+            // create options object with titles, colors, etc.
+            let options = {
+              title: 'Co2 Vs Time(in seconds)',
+              vAxis: {
+          title: "Co2 inside the polyhouse"
+        }
+              
+            };
+    
+            // draw chart on load
+            let chart = new google.visualization.LineChart(
+              document.getElementById('chart_div5')
+            );
+            chart.draw(data, options);
+    
+            // max amount of data rows that should be displayed
+            let maxDatas = 10;
+    
+            // interval for adding new data every 250ms
+            
+            setInterval(function () {
+              // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+              let co=0;
+   const dbref5 = ref(db8,"co2/");
+             
+             onValue(dbref5,(snapshot)=>{
+    
+    snapshot.forEach(childSnapshot=>{
+       
+      //  studs.push(childSnapshot.val().Rollno);
+      //  console.log("deb "+childSnapshot.val().RollNo);
+       var z1=childSnapshot.val().data;
+
+       co=z1;
+      
+       
+    });
+ 
+    
+   })
+             
+
+              let date=new Date();
+              let currenttime=date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds();
+              if (data.getNumberOfRows() > maxDatas) {
+                data.removeRows(0, data.getNumberOfRows() - maxDatas);
+              }
+    
+              data.addRow([currenttime, co]);
+              chart.draw(data, options);
+    
+              index++;
+            }, 1000);
+          }
+         </script>
+             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+           </body>

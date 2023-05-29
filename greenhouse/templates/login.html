@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+        .background-img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.5;
+    }
+        
+        
+        .container {
+            width: 400px;
+            height: auto;
+            padding: 20px;
+            background-color: #c6eada;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 150px;
+            margin-left: -100px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: -250px;
+        }
+        
+        form {
+            margin-top: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333333;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        p.error {
+            color: red;
+            margin-top: 10px;
+        }
+        
+        p.success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img class="background-img" src="/static/gree.jpg" alt="Background Image">
+    <h1>Welcome to the Smart Climate Controlled Agriculture System</h1>
+    <div class="container">
+        <h2>Login</h2>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <p class="success">{{ message }}</p>
+                {% elif message.tags == 'error' %}
+                    <p class="error">{{ message }}</p>
+                {% else %}
+                    <p>{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
